@@ -1,0 +1,22 @@
+<main>
+  <mat-card>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="row">
+      <h3>Ingreso</h3>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Nombre de usuario" name="username" formControlName="username">
+        <mat-error>
+          Nombre de usuario requerido
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Contraseña" name="password" formControlName="password">
+        <mat-error>
+          Contraseña requerida
+        </mat-error>
+      </mat-form-field>
+      <mat-progress-bar *ngIf="loading"  mode="indeterminate"></mat-progress-bar>
+      <button *ngIf="!loading" mat-flat-button color="primary">Ingresar</button>
+    </form>
+  </mat-card>
+
+</main>
