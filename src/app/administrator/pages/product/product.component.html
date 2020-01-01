@@ -40,7 +40,7 @@
                 <mat-label>Marca</mat-label>
                 <mat-select formControlName="brand">
                     <mat-option *ngFor="let brand of brands" [value]="brand.id">
-                        {{brand.name}}
+                        {{brand.name | titlecase }}
                     </mat-option>
                 </mat-select>
                 <mat-error> Marca requerida </mat-error>
@@ -51,7 +51,7 @@
                 <mat-label>Proveedor</mat-label>
                 <mat-select formControlName="provider">
                     <mat-option *ngFor="let provider of providers" [value]="provider.id">
-                        {{provider.name}}
+                        {{provider.name | titlecase }}
                     </mat-option>
                 </mat-select>
                 <mat-error> Proveedor requerido </mat-error>

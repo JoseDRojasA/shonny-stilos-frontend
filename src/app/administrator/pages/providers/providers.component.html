@@ -8,7 +8,7 @@
 
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-                <td mat-cell *matCellDef="let provider"> {{provider.name}} </td>
+                <td mat-cell *matCellDef="let provider"> {{provider.name | titlecase }} </td>
             </ng-container>
 
             <ng-container matColumnDef="consultant">

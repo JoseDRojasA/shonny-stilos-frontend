@@ -6,14 +6,14 @@
     <h1>Portal administrativo</h1>
     <button class="user-menu" mat-button [matMenuTriggerFor]="menu">{{name}}</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink='/login'>Cerrar sesión</button>
+      <button mat-menu-item routerLink='/login' >Cerrar sesión</button>
     </mat-menu>
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #snav fixedTopGap="56">
       <mat-nav-list>
-        <a mat-list-item [routerLink]="nav.url" *ngFor="let nav of options">{{nav.label}}</a>
+        <a mat-list-item routerLinkActive="active" (click)="snav.toggle()" [routerLink]="nav.url" *ngFor="let nav of options">{{nav.label}}</a>
       </mat-nav-list>
     </mat-sidenav>
 

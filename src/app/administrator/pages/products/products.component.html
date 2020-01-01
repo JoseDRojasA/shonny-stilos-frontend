@@ -8,12 +8,12 @@
 
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-                <td mat-cell *matCellDef="let product"> {{product.name}} </td>
+                <td mat-cell *matCellDef="let product"> {{product.name | titlecase }} </td>
             </ng-container>
 
             <ng-container matColumnDef="brand">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Marca </th>
-                <td mat-cell *matCellDef="let product"> {{product.brand.name}} </td>
+                <td mat-cell *matCellDef="let product"> {{product.brand.name | titlecase }} </td>
             </ng-container>
             <ng-container matColumnDef="price">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio </th>
