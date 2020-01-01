@@ -7,12 +7,12 @@ export class User {
     public person?: Person;
     public isAdmin?: boolean;
 
-    constructor(public user?: User) {
-        if (!user) {
+    constructor(object?: User) {
+        if (!object) {
             return;
         }
-        for(const property in user) {
-            this[property] = user[property];
+        for(const property in object) {
+            this[property] = object[property];
         }
     }
 }

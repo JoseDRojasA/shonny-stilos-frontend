@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.userService.authenticate(this.form.value).subscribe(user => {
       this.userService.user = user;
+      this.router.navigate(['administrador', 'marcas']);
     }, error => {
       this.matSnack.open(error.message, 'cerrar', {
         duration: 3000

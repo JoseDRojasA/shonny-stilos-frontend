@@ -8,12 +8,12 @@ export class Person {
     public address?: string;
     public allergies?: string;
     
-    constructor(public user?: Person) {
-        if (!user) {
+    constructor(object?: Person) {
+        if (!object) {
             return;
         }
-        for(const property in user) {
-            this[property] = user[property];
+        for(const property in object) {
+            this[property] = object[property];
         }
     }
 }

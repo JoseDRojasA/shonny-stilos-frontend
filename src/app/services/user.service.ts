@@ -6,7 +6,7 @@ import { User } from '../models/user';
 import { EncryptUtils } from '../shared/encrypt.utils';
 
 import { environment } from 'src/environments/environment';
-import { first } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 
 @Injectable({
@@ -19,7 +19,7 @@ export class UserService {
   }
 
   public authenticate(user: User): Observable<User> {
-    return this.httpClient.post(`${environment.backend.user}/authentication`, user).pipe(first());
+    return this.httpClient.post(`${environment.backend.user}/authentication`, user).pipe(take(1));
   }
 
   public get user(): User {
