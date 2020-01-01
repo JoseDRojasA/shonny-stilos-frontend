@@ -1,28 +1,30 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Product } from 'src/app/models/product';
 import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar } from '@angular/material';
-import { Brand } from 'src/app/models/brand';
-import { BrandService } from 'src/app/services/brand.service';
 import { FormControl } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { ProductService } from 'src/app/services/product.service';
 import { concat } from 'rxjs';
 
 @Component({
-  selector: 'app-brands',
-  templateUrl: './brands.component.html',
-  styleUrls: ['./brands.component.sass']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.sass']
 })
-export class BrandsComponent implements OnInit {
-  displayedColumns: string[] = ['name'];
-  dataSource: MatTableDataSource<Brand>;
+export class ProductsComponent implements OnInit {
+  displayedColumns: string[] = ['name', 'brand', 'price','amount', 'telephone'];
+  dataSource: MatTableDataSource<Product>;
   loading: boolean;
+
   filter: FormControl;
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private brandService: BrandService, private userService: UserService, private matSnackBar: MatSnackBar) {
+  constructor(private userService: UserService, private productService: ProductService, private matSnackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource([]);
     this.filter = new FormControl();
+    this.loading = false;
   }
 
   ngOnInit() {
@@ -30,8 +32,8 @@ export class BrandsComponent implements OnInit {
       this.displayedColumns.push('edit', 'delete');
     }
     this.loading = true;
-    this.brandService.findAllBrands().subscribe(brands => {
-      this.dataSource.data = brands;
+    this.productService.findAllProducts().subscribe(products => {
+      this.dataSource.data = products;
     }, error => {
       this.matSnackBar.open(error.message, 'close', {
         duration: 3000
@@ -50,9 +52,9 @@ export class BrandsComponent implements OnInit {
     }
   }
 
-  deleteBrand(id: number) {
-    concat(this.brandService.deleteBrand(id), this.brandService.findAllBrands()).subscribe(brands => {
-      this.dataSource.data = brands;
+  deleteProduct(id: number) {
+    concat(this.productService.deleteProduct(id), this.productService.findAllProducts()).subscribe(products => {
+      this.dataSource.data = products;
     });;
   }
 }

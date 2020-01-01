@@ -1,0 +1,68 @@
+<main *ngIf="!loading">
+    <h1>{{form.value.id ? 'Editar' : 'Crear'}} producto</h1>
+    <mat-card>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px"
+            fxLayoutAlign="flex-start">
+            <mat-form-field fxFlex="0 1 calc(50% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+                <input matInput formControlName="name" placeholder="Nombre">
+                <mat-error>Nombre requerido</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="0 1 calc(50% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+                <mat-label>Activo</mat-label>
+                <mat-select formControlName="active">
+                    <mat-option [value]="true">
+                        Si
+                    </mat-option>
+                    <mat-option [value]="false">
+                        No
+                    </mat-option>
+                </mat-select>
+                <mat-error> Activo requerido </mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="0 1 calc(50% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+                <input matInput type="number" formControlName="buyPrice" placeholder="Precio de compra">
+                <mat-error>Precio de compra requerido</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="0 1 calc(50% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+                <input matInput type="number" formControlName="price" placeholder="Precio de venta">
+                <mat-error>Precio de venta requerido</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="0 1 calc(50% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+                <input type="number" matInput formControlName="amount" placeholder="Cantidad">
+                <mat-error>Cantidad requerido</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="0 1 calc(50% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+                <input matInput type="number" formControlName="minAmount" placeholder="Cantidad minima">
+                <mat-error>Cantidad minima requerido</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="0 1 calc(50% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+                <mat-label>Marca</mat-label>
+                <mat-select formControlName="brand">
+                    <mat-option *ngFor="let brand of brands" [value]="brand.id">
+                        {{brand.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error> Marca requerida </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field fxFlex="0 1 calc(50% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+                <mat-label>Proveedor</mat-label>
+                <mat-select formControlName="provider">
+                    <mat-option *ngFor="let provider of providers" [value]="provider.id">
+                        {{provider.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error> Proveedor requerido </mat-error>
+            </mat-form-field>
+
+
+
+            <div class="button-container" fxFlex="100%">
+                <button mat-flat-button color="primary">Guardar</button>
+            </div>
+        </form>
+    </mat-card>
+</main>
+<app-loading-fullpage *ngIf="loading"></app-loading-fullpage>

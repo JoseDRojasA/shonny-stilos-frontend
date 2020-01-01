@@ -38,6 +38,7 @@ export class ProvidersComponent implements OnInit {
       this.matSnackBar.open(error.message, 'close', {
         duration: 3000
       });
+      this.loading = false;
     }, () => {
       this.loading = false;
     });

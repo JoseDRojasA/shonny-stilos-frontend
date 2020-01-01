@@ -5,6 +5,9 @@ import { BrandsComponent } from './pages/brands/brands.component';
 import { BrandComponent } from './pages/brand/brand.component';
 import { ProvidersComponent } from './pages/providers/providers.component';
 import { ProviderComponent } from './pages/provider/provider.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { ProductComponent } from './pages/product/product.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 
 const routes: Routes = [
@@ -18,10 +21,12 @@ const routes: Routes = [
       },
       {
         path: 'marca',
+        canActivate: [AdminGuard],
         component: BrandComponent
       },
       {
         path: 'marca/:id',
+        canActivate: [AdminGuard],
         component: BrandComponent
       },
       {
@@ -30,11 +35,27 @@ const routes: Routes = [
       },
       {
         path: 'proveedor',
+        canActivate: [AdminGuard],
         component: ProviderComponent
       },
       {
         path: 'proveedor/:id',
+        canActivate: [AdminGuard],
         component: ProviderComponent
+      },
+      {
+        path: 'productos',
+        component: ProductsComponent
+      },
+      {
+        path: 'producto',
+        canActivate: [AdminGuard],
+        component: ProductComponent
+      },
+      {
+        path: 'producto/:id',
+        canActivate: [AdminGuard],
+        component: ProductComponent
       }
     ]
   }

@@ -42,6 +42,7 @@ export class BrandComponent implements OnInit {
         this.matSnackBar.open(error.message, 'close', {
           duration: 3000
         });
+        this.loading = false;
       }, () => {
         this.loading = false;
       })
@@ -61,6 +62,7 @@ export class BrandComponent implements OnInit {
       this.matSnackBar.open(error.message, 'close', {
         duration: 3000
       });
+      this.loading = false;
     }, () => {
       this.loading = false;
     })

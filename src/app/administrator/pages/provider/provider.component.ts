@@ -25,6 +25,7 @@ export class ProviderComponent implements OnInit {
       consultant: ['', Validators.required],
       consultantNumber: ['', Validators.required]
     })
+    
   }
   ngOnInit() {
     const id = this.route.snapshot.params.id;
@@ -42,6 +43,7 @@ export class ProviderComponent implements OnInit {
         this.matSnackBar.open(error.message, 'close', {
           duration: 3000
         });
+        this.loading = false;
       }, () => {
         this.loading = false;
       })
@@ -61,6 +63,7 @@ export class ProviderComponent implements OnInit {
       this.matSnackBar.open(error.message, 'close', {
         duration: 3000
       });
+      this.loading = false;
     }, () => {
       this.loading = false;
     })
