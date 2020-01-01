@@ -5,10 +5,11 @@ import { MatSidenavModule, MatButtonModule, MatIconModule, MatListModule, MatToo
 import { AdministratorRoutingModule } from './administrator-routing.module';
 import { AdministratorTemplateComponent } from './templates/administrator-template/administrator-template.component';
 import { BrandsComponent } from './pages/brands/brands.component';
+import { BrandComponent } from './pages/brand/brand.component';
 
 
 @NgModule({
-  declarations: [AdministratorTemplateComponent, BrandsComponent],
+  declarations: [AdministratorTemplateComponent, BrandsComponent, BrandComponent],
   imports: [
     CommonModule,
     AdministratorRoutingModule,

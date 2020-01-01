@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'src/app/models/menuItem';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -9,8 +10,9 @@ import { MenuItem } from 'src/app/models/menuItem';
 })
 export class AdministratorTemplateComponent {
   public options: Array<MenuItem>;
+  public name: string;
 
-  constructor() {
+  constructor(private userService: UserService) {
     this.options = [
       {
         label: 'Marcas',
@@ -32,7 +34,8 @@ export class AdministratorTemplateComponent {
         label: 'Ventas',
         url: '/administrador/ventas'
       }
-    ]
+    ];
+    this.name = `${this.userService.user.person.name}`.trim();
   }
 
 }
