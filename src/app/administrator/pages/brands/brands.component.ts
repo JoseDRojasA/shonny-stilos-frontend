@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar } from '@angular/material';
 import { Brand } from 'src/app/models/brand';
 import { BrandService } from 'src/app/services/brand.service';
 import { FormControl } from '@angular/forms';
@@ -14,13 +14,13 @@ import { concat } from 'rxjs';
 export class BrandsComponent implements OnInit {
   displayedColumns: string[] = ['name'];
   dataSource: MatTableDataSource<Brand>;
-
+  loading: boolean;
   filter: FormControl;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private brandService: BrandService, private userService: UserService) {
+  constructor(private brandService: BrandService, private userService: UserService, private matSnackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource([]);
     this.filter = new FormControl();
   }
@@ -29,8 +29,15 @@ export class BrandsComponent implements OnInit {
     if (this.userService.user.isAdmin) {
       this.displayedColumns.push('edit', 'delete');
     }
+    this.loading = true;
     this.brandService.findAllBrands().subscribe(brands => {
       this.dataSource.data = brands;
+    }, error => {
+      this.matSnackBar.open(error.message, 'close', {
+        duration: 3000
+      });
+    }, () => {
+      this.loading = false;
     });
   }
 
