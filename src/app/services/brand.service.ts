@@ -16,7 +16,15 @@ export class BrandService {
     return this.httpClient.get<Brand[]>(`${environment.backend.brands}/`).pipe(take(1));
   }
 
+  public findById(id: number): Observable<Brand> {
+    return this.httpClient.get<Brand>(`${environment.backend.brands}/${id}`).pipe(take(1));
+  }
+
   public deleteBrand(id: number): Observable<any> {
     return this.httpClient.delete<any>(`${environment.backend.brands}/${id}`).pipe(take(1));
+  }
+
+  public saveBrand(brand: Brand): Observable<Brand> {
+    return this.httpClient.post<Brand>(`${environment.backend.brands}/`, brand).pipe(take(1));
   }
 }

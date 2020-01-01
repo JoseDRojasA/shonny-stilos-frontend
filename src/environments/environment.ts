@@ -4,6 +4,7 @@ export const environment = {
   production: false,
   backend: {
     user: `${BASE}/users`,
-    brands: `${BASE}/brands`
+    brands: `${BASE}/brands`,
+    providers: `${BASE}/providers`
   }
 };

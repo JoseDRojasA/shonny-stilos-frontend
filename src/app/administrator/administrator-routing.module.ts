@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdministratorTemplateComponent } from './templates/administrator-template/administrator-template.component';
 import { BrandsComponent } from './pages/brands/brands.component';
 import { BrandComponent } from './pages/brand/brand.component';
+import { ProvidersComponent } from './pages/providers/providers.component';
+import { ProviderComponent } from './pages/provider/provider.component';
 
 
 const routes: Routes = [
@@ -21,6 +23,18 @@ const routes: Routes = [
       {
         path: 'marca/:id',
         component: BrandComponent
+      },
+      {
+        path: 'proveedores',
+        component: ProvidersComponent
+      },
+      {
+        path: 'proveedor',
+        component: ProviderComponent
+      },
+      {
+        path: 'proveedor/:id',
+        component: ProviderComponent
       }
     ]
   }
