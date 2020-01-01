@@ -8,6 +8,10 @@ import { ProviderComponent } from './pages/provider/provider.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductComponent } from './pages/product/product.component';
 import { AdminGuard } from '../guards/admin.guard';
+import { InvoicesComponent } from './pages/invoices/invoices.component';
+import { InvoiceComponent } from './pages/invoice/invoice.component';
+import { SellsComponent } from './pages/sells/sells.component';
+import { SellComponent } from './pages/sell/sell.component';
 
 
 const routes: Routes = [
@@ -56,6 +60,34 @@ const routes: Routes = [
         path: 'producto/:id',
         canActivate: [AdminGuard],
         component: ProductComponent
+      },
+      {
+        path: 'facturas',
+        component: InvoicesComponent
+      },
+      {
+        path: 'factura',
+        canActivate: [AdminGuard],
+        component: InvoiceComponent
+      },
+      {
+        path: 'factura/:id',
+        canActivate: [AdminGuard],
+        component: InvoiceComponent
+      },
+      {
+        path: 'ventas',
+        component: SellsComponent
+      },
+      {
+        path: 'venta',
+        canActivate: [AdminGuard],
+        component: SellComponent
+      },
+      {
+        path: 'venta/:id',
+        canActivate: [AdminGuard],
+        component: SellComponent
       }
     ]
   }

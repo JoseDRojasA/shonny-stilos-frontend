@@ -13,10 +13,14 @@ import { ProvidersComponent } from './pages/providers/providers.component';
 import { ProviderComponent } from './pages/provider/provider.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductComponent } from './pages/product/product.component';
+import { InvoicesComponent } from './pages/invoices/invoices.component';
+import { InvoiceComponent } from './pages/invoice/invoice.component';
+import { SellsComponent } from './pages/sells/sells.component';
+import { SellComponent } from './pages/sell/sell.component';
 
 
 @NgModule({
-  declarations: [AdministratorTemplateComponent, BrandsComponent, BrandComponent, LoadingFullpageComponent, ProvidersComponent, ProviderComponent, ProductsComponent, ProductComponent],
+  declarations: [AdministratorTemplateComponent, BrandsComponent, BrandComponent, LoadingFullpageComponent, ProvidersComponent, ProviderComponent, ProductsComponent, ProductComponent, InvoicesComponent, InvoiceComponent, SellsComponent, SellComponent],
   providers: [FormBuilder],
   imports: [
     CommonModule,
