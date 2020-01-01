@@ -1,1 +1,24 @@
-<p>provider works!</p>
+<main *ngIf="!loading">
+    <h1>{{form.value.id ? 'Editar' : 'Crear'}} proveedor</h1>
+    <mat-card>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px"
+        fxLayoutAlign="flex-start">
+            <mat-form-field fxFlex="0 1 calc(50% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+                <input matInput formControlName="name" placeholder="Nombre">
+                <mat-error>Nombre requerido</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="0 1 calc(50% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+                <input matInput formControlName="consultant" placeholder="Nombre asesor">
+                <mat-error>Nombre requerido</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="0 1 calc(50% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+                <input type="tel" matInput formControlName="consultantNumber" placeholder="Teléfono">
+                <mat-error>Nombre requerido</mat-error>
+            </mat-form-field>
+            <div class="button-container" fxFlex="100%">
+                <button mat-flat-button color="primary">Guardar</button>
+            </div>
+        </form>
+    </mat-card>
+</main>
+<app-loading-fullpage *ngIf="loading"></app-loading-fullpage>

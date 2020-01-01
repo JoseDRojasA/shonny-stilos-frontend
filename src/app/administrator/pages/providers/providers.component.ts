@@ -21,7 +21,8 @@ export class ProvidersComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   
   constructor(private userService: UserService, private providerService: ProviderService) {
-
+    this.dataSource = new MatTableDataSource([]);
+    this.filter = new FormControl();
   }
 
   ngOnInit() {
@@ -41,7 +42,7 @@ export class ProvidersComponent implements OnInit {
     }
   }
 
-  deleteBrand(id: number) {
+  deleteProvider(id: number) {
     concat(this.providerService.deleteProvider(id), this.providerService.findAllProviders()).subscribe(providers => {
       this.dataSource.data = providers;
     });;
