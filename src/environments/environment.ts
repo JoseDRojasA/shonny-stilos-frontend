@@ -6,6 +6,7 @@ export const environment = {
     user: `${BASE}/users`,
     brands: `${BASE}/brands`,
     providers: `${BASE}/providers`,
-    products: `${BASE}/products`
+    products: `${BASE}/products`,
+    invoices: `${BASE}/invoices`
   }
 };

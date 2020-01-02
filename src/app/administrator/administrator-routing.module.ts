@@ -81,12 +81,10 @@ const routes: Routes = [
       },
       {
         path: 'venta',
-        canActivate: [AdminGuard],
         component: SellComponent
       },
       {
         path: 'venta/:id',
-        canActivate: [AdminGuard],
         component: SellComponent
       }
     ]
