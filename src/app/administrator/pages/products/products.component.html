@@ -31,14 +31,14 @@
             </ng-container>
 
             <ng-container matColumnDef="edit">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Editar </th>
+                <th mat-header-cell *matHeaderCellDef> Editar </th>
                 <td class="util" mat-cell *matCellDef="let product">
                     <mat-icon [routerLink]="'/administrador/producto/' + product.id">edit</mat-icon>
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="delete">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Borrar </th>
+                <th mat-header-cell *matHeaderCellDef> Borrar </th>
                 <td class="util" mat-cell *matCellDef="let product">
                     <mat-icon (click)="deleteProduct(product.id)">delete</mat-icon>
                 </td>

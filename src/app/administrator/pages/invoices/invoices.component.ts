@@ -14,7 +14,7 @@ const PAGE_SIZE = 5;
 })
 export class InvoicesComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['date', 'serial', 'provider', 'edit', 'delete'];
+  displayedColumns: string[] = ['date', 'serial', 'providerName', 'edit', 'delete'];
 
   resultsLength = 0;
   pageSize = PAGE_SIZE

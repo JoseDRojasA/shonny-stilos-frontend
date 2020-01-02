@@ -5,12 +5,13 @@ import { Invoice } from './invoice';
 export class InvoiceProduct {
     id?: InvoiceProductKey;
     buyPricePerUnit?: number;
-    pricePerUnit?: number;
     amount?: number;
     product?: Product;
+    productName?: string;
     invoice?: Invoice;
 
     constructor(object?: InvoiceProduct) {
+        this.id = new InvoiceProductKey();
         if (!object) {
             return;
         }

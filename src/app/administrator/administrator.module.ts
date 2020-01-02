@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatSidenavModule, MatButtonModule, MatIconModule, MatListModule, MatToolbarModule, MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatSnackBarModule, MatProgressSpinnerModule, MatCardModule, MatSelectModule, MatMenuModule, MatSortModule } from '@angular/material';
+import { MatSidenavModule, MatButtonModule, MatIconModule, MatListModule, MatToolbarModule, MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatSnackBarModule, MatProgressSpinnerModule, MatCardModule, MatSelectModule, MatMenuModule, MatSortModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule } from '@angular/material';
 
 import { AdministratorRoutingModule } from './administrator-routing.module';
 import { AdministratorTemplateComponent } from './templates/administrator-template/administrator-template.component';
@@ -17,11 +17,11 @@ import { InvoicesComponent } from './pages/invoices/invoices.component';
 import { InvoiceComponent } from './pages/invoice/invoice.component';
 import { SellsComponent } from './pages/sells/sells.component';
 import { SellComponent } from './pages/sell/sell.component';
-
+import {MAT_DATE_LOCALE} from '@angular/material';
 
 @NgModule({
   declarations: [AdministratorTemplateComponent, BrandsComponent, BrandComponent, LoadingFullpageComponent, ProvidersComponent, ProviderComponent, ProductsComponent, ProductComponent, InvoicesComponent, InvoiceComponent, SellsComponent, SellComponent],
-  providers: [FormBuilder],
+  providers: [FormBuilder, MatDatepickerModule, { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }],
   imports: [
     CommonModule,
     AdministratorRoutingModule,
@@ -38,10 +38,13 @@ import { SellComponent } from './pages/sell/sell.component';
     MatPaginatorModule,
     MatInputModule,
     MatSnackBarModule,
+    MatAutocompleteModule,
     MatSortModule,
     FlexLayoutModule,
     MatSelectModule,
     MatMenuModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatProgressSpinnerModule
   ]
 })
