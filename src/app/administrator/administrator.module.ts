@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatSidenavModule, MatButtonModule, MatIconModule, MatListModule, MatToolbarModule, MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatSnackBarModule, MatProgressSpinnerModule, MatCardModule, MatSelectModule, MatMenuModule, MatSortModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule } from '@angular/material';
+import { MatSidenavModule, MatButtonModule, MatIconModule, MatListModule, MatToolbarModule, MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatSnackBarModule, MatProgressSpinnerModule, MatCardModule, MatSelectModule, MatMenuModule, MatSortModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatDividerModule } from '@angular/material';
 
 import { AdministratorRoutingModule } from './administrator-routing.module';
 import { AdministratorTemplateComponent } from './templates/administrator-template/administrator-template.component';
@@ -45,6 +45,7 @@ import {MAT_DATE_LOCALE} from '@angular/material';
     MatMenuModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatDividerModule,
     MatProgressSpinnerModule
   ]
 })

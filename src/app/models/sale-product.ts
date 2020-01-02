@@ -10,6 +10,7 @@ export class SaleProduct {
     price?: number;
     amount?: number;
     discount?: number;
+    productName?: string;
 
     constructor(object?: SaleProduct) {
         if (!object) {

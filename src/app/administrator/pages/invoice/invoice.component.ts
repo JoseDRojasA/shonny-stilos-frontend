@@ -18,8 +18,8 @@ import { Invoice } from 'src/app/models/invoice';
 })
 export class InvoiceComponent implements OnInit {
 
-  displayedColumns: string[] = ['product', 'amount', 'price', 'delete'];
-
+  displayedColumns: string[] = ['product', 'amount', 'price', 'total', 'delete'];
+  public total: number;
   public form: FormGroup;
   public loading: boolean;
   public products: Product[];
@@ -27,7 +27,7 @@ export class InvoiceComponent implements OnInit {
   invoiceProducts: MatTableDataSource<InvoiceProduct>;
   newInvoiceProduct: FormGroup;
 
-  constructor(   
+  constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -35,56 +35,75 @@ export class InvoiceComponent implements OnInit {
     private productService: ProductService,
     private invoiceService: InvoiceService,
     private matSnackBar: MatSnackBar) {
-      this.form = this.formBuilder.group({
-        id: [''],
-        date: [new Date(), Validators.required],
-        serial: ['', Validators.required],
-        provider: ['', Validators.required],
-      })
-      this.invoiceProducts = new MatTableDataSource([]);
-      this.newInvoiceProduct = this.formBuilder.group({
-        product: ['', Validators.required],
-        amount: ['', Validators.required],
-        buyPricePerUnit: ['', Validators.required]
-      });
-    }
+    this.form = this.formBuilder.group({
+      id: [''],
+      date: [new Date(), Validators.required],
+      serial: ['', Validators.required],
+      provider: ['', Validators.required],
+    })
+    this.invoiceProducts = new MatTableDataSource([]);
+    this.newInvoiceProduct = this.formBuilder.group({
+      product: ['', Validators.required],
+      amount: ['', Validators.required],
+      buyPricePerUnit: ['', Validators.required]
+    });
+  }
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
-    if(id) {
-      this.loading = true;
+    this.invoiceProducts.connect().subscribe(invoiceProducts => {
+      this.total = invoiceProducts.reduce((total, invoiceProduct) => total + invoiceProduct.buyPricePerUnit * invoiceProduct.amount, 0);
+    });
+    this.loading = true;
+    if (id) {
       forkJoin(
         this.invoiceService.findById(id),
         this.productService.findAllProducts(),
         this.providerService.findAllProviders()
       )
-      .subscribe(([invoice, products, providers]) => {
-        this.products = products;
-        this.providers = providers;
-        if (!invoice) {
-          return;
-        }
-        let {id, date, serial} = invoice;
-        date = new Date(date);
-        this.form.setValue({
-          ...this.form.value,
-          id,date,serial,
-          provider: invoice.provider.id
-        });
-        invoice.invoiceProducts.forEach(invoiceProduct => {
-          invoiceProduct.productName = products.find(product => invoiceProduct.id.product).name;
+        .subscribe(([invoice, products, providers]) => {
+          this.products = products;
+          this.providers = providers;
+          if (!invoice) {
+            return;
+          }
+          let { id, date, serial } = invoice;
+          date = new Date(date);
+          this.form.setValue({
+            ...this.form.value,
+            id, date, serial,
+            provider: invoice.provider.id
+          });
+          invoice.invoiceProducts.forEach(invoiceProduct => {
+            invoiceProduct.productName = products.find(product => product.id === invoiceProduct.id.product).name;
 
+          })
+          this.invoiceProducts.data = invoice.invoiceProducts;
+          this.total = invoice.invoiceProducts.reduce((total, invoiceProduct) => total + invoiceProduct.buyPricePerUnit * invoiceProduct.amount, 0);
+        }, error => {
+          this.matSnackBar.open(error.message, 'close', {
+            duration: 3000
+          });
+          this.loading = false;
+        }, () => {
+          this.loading = false;
         })
-        this.invoiceProducts.data = invoice.invoiceProducts;
-        
-      }, error => {
-        this.matSnackBar.open(error.message, 'close', {
-          duration: 3000
-        });
-        this.loading = false;
-      }, () => {
-        this.loading = false;
-      })
+    } else {
+      forkJoin(
+        this.productService.findAllProducts(),
+        this.providerService.findAllProviders()
+      )
+        .subscribe(([products, providers]) => {
+          this.products = products;
+          this.providers = providers;
+        }, error => {
+          this.matSnackBar.open(error.message, 'close', {
+            duration: 3000
+          });
+          this.loading = false;
+        }, () => {
+          this.loading = false;
+        })
     }
   }
   onSubmit() {
@@ -145,6 +164,7 @@ export class InvoiceComponent implements OnInit {
       });
       return;
     }
+    console.log(invoiceProducts)
     if (invoiceProducts) {
       this.matSnackBar.open('El producto ya ha sido ingresado a la tabla', 'cerrar', {
         duration: 3000
@@ -164,6 +184,6 @@ export class InvoiceComponent implements OnInit {
   }
 
   displayName(element) {
-    return element ? element.name: null;
+    return element ? element.name : null;
   }
 }
