@@ -7,6 +7,7 @@ export const environment = {
     brands: `${BASE}/brands`,
     providers: `${BASE}/providers`,
     products: `${BASE}/products`,
-    invoices: `${BASE}/invoices`
+    invoices: `${BASE}/invoices`,
+    sales: `${BASE}/sales`
   }
 };

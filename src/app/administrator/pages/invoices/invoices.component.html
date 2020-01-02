@@ -5,7 +5,7 @@
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
     </mat-form-field>
     <div class="mat-elevation-z8">
-        <table mat-table mat-table [dataSource]="data" class="example-table"
+        <table mat-table mat-table [dataSource]="data"
         matSort matSortActive="date" matSortDisableClear matSortDirection="desc">
 
             <ng-container matColumnDef="date">

@@ -1,1 +1,47 @@
-<p>sells works!</p>
+
+<main [ngClass]="{'hidden': loading}">
+    <h1>Ventas</h1>   
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
+    <div class="mat-elevation-z8">
+        <table mat-table mat-table [dataSource]="data"
+        matSort matSortActive="date" matSortDisableClear matSortDirection="desc">
+
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+                <td mat-cell *matCellDef="let sale"> {{sale.date | date:'yyyy-MM-dd' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="clientName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </th>
+                <td mat-cell *matCellDef="let sale"> {{sale.clientName | titlecase }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef> Editar </th>
+                <td class="util" mat-cell *matCellDef="let sale">
+                    <mat-icon [routerLink]="'/administrador/venta/' + sale.id">edit</mat-icon>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef> Borrar </th>
+                <td class="util" mat-cell *matCellDef="let sale">
+                    <mat-icon (click)="deleteSale(sale.id)">delete</mat-icon>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+        </table>
+
+        <mat-paginator [length]="resultsLength" [pageSize]="pageSize"></mat-paginator>
+    </div>
+</main>
+<button *ngIf="!loading" class="add-button" [routerLink]="'/administrador/venta'" mat-fab
+    color="primary">
+    <mat-icon>add</mat-icon>
+</button>
+<app-loading-fullpage *ngIf="loading"></app-loading-fullpage>
